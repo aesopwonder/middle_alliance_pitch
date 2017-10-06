@@ -1,0 +1,21 @@
+from Savoir import Savoir
+
+
+rpcuser = 'multichainrpc'
+rpcpasswd = '7fngkKLnjmQjiYQLeaR894XyPFfaexXsZjqXKH7bhbYs'
+rpchost = 'localhost'
+rpcport = '7318'
+chainname = 'BullCoin4'
+
+api = Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)
+#print(api.getinfo())
+#print()
+#print(api.getaddresses())
+#print()
+#print(api.getnewaddress())
+#print(api.help())
+print()
+#print(api.issue('1Z2ZQkTgtFXdqExWaNrqCdmZ1TN1wxT5xtbYRP','DanCoin',1000,.01))
+print(api.listassets())
+print()
+#print(api.grant('1V9eKUYUa826rxw2cNT4ZFPhULfi7krCFWwhDh','receive'))
