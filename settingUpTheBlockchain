@@ -27,7 +27,12 @@
 
     multichain-cli maPitchChain@<IP ADDRESS>:<PORT> getaddresses
 
-#
+#   g. Set the RPC username and password in the following file: C:\Users\<USERNAME>\AppData\Roaming\MultiChain\maPitchChain\multichain.conf:
+
+    rpcuser=multichainrpc
+    rpcpassword=test
+
+# 
 # 2. SETTING UP USERS
 #
 # User names, private keys, and addresses have been pregenerated for the purpose of testing this project.
