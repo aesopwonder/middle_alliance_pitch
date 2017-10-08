@@ -1,0 +1,98 @@
+# The purpose of this file is to describe the setup of the blockchain, user creation, permissions, and asset initialization.
+#
+# Note: These steps were run using the WINDOWS version of MultiChain.
+# Note: These steps are specific to the project at hand, not to the general setup and use of a MultiChain environment.
+# Note: Please refer to https://www.multichain.com for more information, technical or general, about MultiChain.
+#
+# The steps to setting up the blockchain are as follows:
+#   1. Creating the blockchain.
+#   2. Setting up users.
+#   3. Issuing assets.
+#
+# 1. CREATING THE BLOCKCHAIN
+#
+#   a. Download MultiChain from the MultiChain website and unzip the file.
+#   b. Open an Administrative command prompt and navigate to the location of the unzipped MultiChain files.
+#   c. Run the following command to create a blockchain named maPitchChain:
+
+    multichain-util create maPitchChain
+      
+#   d. Once maPitchChain has been created, run the following command to initialize it and start the daemon:
+
+    multichaind maPitchChain -daemon
+     
+#   e. Be sure to take note of the connection address of the blockchain, which will be in the form of maPitchChain@<IP ADDRESS>:<PORT>
+#
+#   f. Take note of the initial address created with the daemon initialization by running the following from a separate administrative command prompt:
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> getaddresses
+
+#
+# 2. SETTING UP USERS
+#
+# User names, private keys, and addresses have been pregenerated for the purpose of testing this project.
+# Their information is as follows:
+# 
+#   TESTUSER1
+#   TestUser1 address: 1Kyj1SW8JK25YyW5RaVQSCjnHQ7YUMSbxgHZX2
+#   TestUser1 privkey: VD9iSUFoNbjDMNUDnosZXkQxCCJnswu5zSDLck8n6dQyoCvyBKE5zFwj
+#   TestUser1 addressToHex: 314b796a315357384a4b3235597957355261565153436a6e48513759554d53627867485a5832
+#
+#   TESTUSER2
+#   TestUser2 address: 12R5h2yavBChCtfhpFsQryXBbZueMxPoqU7eYt
+#   TestUser2 privkey: VHj2Tr9KHn6nTdCd5TZTeW5hAMwbJSnpQ4uZS9xeH6MpPWudf4jmJk1c
+#   TestUser2 addressToHex: 313252356832796176424368437466687046735172795842625a75654d78506f715537655974
+#
+#   TESTUSER3
+#   TestUser3 address: 162GH3TAeWrfVLKDTTukyzqiRGdcvCUpEmiwzi
+#   TestUser3 privkey: VAQYrMNKarWcNG3CiiwQqxvsBy4AD5qUg7bpzVKQTCoZBr6PhUhGG4aB
+#   TestUser3 addressToHex: 313632474833544165577266564c4b445454756b797a71695247646376435570456d69777a69
+#
+#   a. Import the address for TestUser1 into the blockchain by running the following command:
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> importaddress 1Kyj1SW8JK25YyW5RaVQSCjnHQ7YUMSbxgHZX2 '' false
+    
+#   b. Verify the import by running the following command and ensuring that the address is listed in the output:
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> getaddresses
+
+#   c. Import the addresses for TestUser2 and TestUser3 using the same process as above, substituting the other TestUser addresses for the TestUser1 address in the above example.
+#   d. Set the permissions for TestUser1 address by running following commands:
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> grant 1Kyj1SW8JK25YyW5RaVQSCjnHQ7YUMSbxgHZX2 receive
+    
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> grant 1Kyj1SW8JK25YyW5RaVQSCjnHQ7YUMSbxgHZX2 send
+
+#   e. Set the permissions for TestUser2 and TestUser3 using the same process as above, substituting the other TestUser addresses for the TestUser1 address in the above example.
+
+#   e. Create a new stream to store key-value pairs of username:address(converted to hex) by entering the following command:
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> create stream users false
+    
+#   f. Subscribe to the new stream (users) to ensure the ability to verify contents pushed to the stream
+#   NOTE: This step may not be strictly necessary.
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> subscribe users
+    
+#   g. Add the TestUser1:Address(in hex) to the users stream:
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> publish users "TestUser1" 314b796a315357384a4b3235597957355261565153436a6e48513759554d53627867485a583220
+    
+#   h. Verify that the key-value pair was added to the stream by entering the following command:
+    
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> liststreamitems users
+
+#   i. Add the TestUser2 and TestUser3 key-value pairs to the users stream using the same process as above, substituting the other TestUser addresses (in hex) for the TestUser1 address in the above example.
+#
+# 3. ISSUING ASSETS
+# 
+#   a. Using the address discovered in Part 1, Step f above, issue 4000 units of a new asset called maPitchCoin:
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> issuefrom <ADDRESS_FROM> <ADDRESS_TO> "{\"name\":\"maPitchCoin\",\"open\":true}" 4000 .01
+
+#   b. Send 1000 units of maPitchCoin to TestUser1, TestUser2, and TestUser3 with the following command:
+
+    multichain-cli maPitchChain@<IP ADDRESS>:<PORT> sendasset <TEST USER ADDRESS> maPitchCoin 1000
+
+
+
