@@ -31,6 +31,7 @@
 
     rpcuser=multichainrpc
     rpcpassword=test
+    rpcallowip=<IP ADDRESS OR RANGE>
 
 # 
 # 2. SETTING UP USERS
