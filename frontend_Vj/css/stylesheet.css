@@ -19,8 +19,7 @@ body{
   margin: 0 auto;
   position: relative;
  }
-#title{
-  z-index: 100;
+.title{
   background-repeat: no-repeat;
   overflow: hidden;
   color:red;
@@ -42,16 +41,16 @@ body{
 }
 #title_content{
   position: absolute;
-    top: 2.8vh;
+    top: 3vh;
     right: 0;
     left: 0;
     bottom:0;
     margin: 0 auto;
     }
-#title:hover #title_content{
+.title:hover #title_content{
   display: none;
 }
-#title:hover:before{
+.title:hover:before{
   font-size: 1.5vw;
   font-weight: 800;
   font-family: Palatino;
@@ -62,6 +61,88 @@ body{
     margin-left:.45vw;
   content:"Login";
 }
+.popup{
+  position: relative;
+  left:2vw;
+}
+/**********
+Form Style
+**********/
+.form-style-4{
+    width: 450px;
+    font-size: 16px;
+    background: #353536;
+    padding: 30px 30px 15px 30px;
+    border: 5px solid white;
+}
+.form-style-4 input[type=submit],
+.form-style-4 input[type=button],
+.form-style-4 input[type=text],
+.form-style-4 input[type=email],
+.form-style-4 textarea,
+.form-style-4 label
+{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 16px;
+    color: #fff;
+
+}
+.form-style-4 label {
+    display:block;
+    margin-bottom: 10px;
+}
+.form-style-4 label > span{
+    display: inline-block;
+    float: left;
+    width: 150px;
+}
+.form-style-4 input[type=text],
+.form-style-4 input[type=email]
+{
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed #88ED9B;
+    width: 275px;
+    outline: none;
+    padding: 0px 0px 0px 0px;
+    font-style: italic;
+}
+.form-style-4 textarea{
+    font-style: italic;
+    padding: 0px 0px 0px 0px;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px dashed #353536;
+    width: 275px;
+    overflow: hidden;
+    resize:none;
+    height:20px;
+}
+
+.form-style-4 textarea:focus,
+.form-style-4 input[type=text]:focus,
+.form-style-4 input[type=email]:focus,
+.form-style-4 input[type=email] :focus
+{
+    border-bottom: 1px dashed #88ED9B;
+}
+
+.form-style-4 input[type=submit],
+.form-style-4 input[type=button]{
+    background: white;
+    border: none;
+    padding: 8px 10px 8px 10px;
+    border-radius: 5px;
+    color: #88ED9B;
+}
+.form-style-4 input[type=submit]:hover,
+.form-style-4 input[type=button]:hover{
+background: black;
+}
+/*************
+End Form Style
+*************/
 #up_left{
   background-image: url("../images/middle_mark-crop.png");
   border-bottom-right-radius:60px;
@@ -176,4 +257,3 @@ body{
   font-family:Palatino;
   font-size: 2.2vh;
 }
-
