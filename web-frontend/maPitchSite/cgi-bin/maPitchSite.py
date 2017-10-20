@@ -54,46 +54,26 @@ def getUserAccountBalance(userName, savoirObject):
 # Required header that tells the browser how to render the text.
 print("Content-Type: text/html\n")
 
-print("""<html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <title>Middle Market Alliance</title>
-  <meta name="description" content="Middle Alliance Crypto Landing Page">
-  <meta name="author" content="Andrew Nguyen">
-  <link rel="stylesheet" href="../css/stylesheet.css">
-  <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-  <![endif]-->
-</head>
-
-<body>
-  <div id="res_wrapper" class="res_font">
-    <div id="results">
-      <center><h1 id="res_title">Account Information</h1></center>
-    <h1 style = color:limegreen;>Public Address: <span>""" + getUserAddress("TestUser3", multichainSavoirObject) + """ </span></h1>
-    <h2 style = color:limegreen;>Balance: <span>""" + str(getUserAccountBalance("TestUser3", multichainSavoirObject)) + """ maPitchCoin</span></h2>
-    <h2 style = color:red;>Transaction List:
-      <ul>
-        <li>
-          <span>Addr: 3Yu2BuptuZSiBWfr2Qy4aic6qEVnwPWasdfP0a | Amount: - 93.239</span>
-        </li>
-        <li>
-          <span>Addr: 1Yu2BastuZSiBWfr2Qy4aic6ssqEVnasdffdHPEc | Amount: + .00123</span>
-        </li>
-        <li>
-          <span>Addr: 1Yu2BuptasdiBWfr2Qy4aic6qEVnwPWrdkHPfg | Amount: - 9.24</span>
-        </li>
-        <li>
-          <span>Addr: 3Yu2BuptuZSiBWfr2Qy4aic6qEVnwPWasdfP0a | Amount: + 239.22</span>
-        </li>
-      </ul>
-    </span></h2>
-    <h2><span style = color:limegreen>Name: """ + getUserRealName("TestUser3", multichainSavoirObject) + """</span><span style = color:red> - - - Reputation: 4,309 Points - - - Member Since: 2017</span></h2>
-
-  </div>
-  </div>
-  <script>
-</script>
-</body>
-</html>""")
+print("""
+	<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+    $("#updateName").click(function(){
+		var newName = prompt("Update your name:", "Enter new name here");
+        $.ajax({
+			url: "updateName.py",
+			type: "post",
+			datatype:"json",
+			data: {'TestUser3' : newName}
+			});
+    });
+});
+	</script>
+	</head>
+	<body>
+    <p><b>Name:</b> """ + getUserRealName("TestUser3", multichainSavoirObject) + """&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn" id="updateName">Update</button></p>
+	<p><b>Wallet balance:</b> """ + str(getUserAccountBalance("TestUser3", multichainSavoirObject)) + """</p>
+	</body>
+	""")
