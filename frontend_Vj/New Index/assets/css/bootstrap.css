@@ -1922,7 +1922,7 @@ pre code {
     width: 58.33333333%;
   }
   .col-lg-6 {
-    width: 50%;
+    width: auto;
   }
   .col-lg-5 {
     width: 41.66666667%;

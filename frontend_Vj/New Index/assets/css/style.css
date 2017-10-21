@@ -2216,6 +2216,9 @@ label {
 
 /*footer*/
 .site-footer {
+Position:fixed;
+Bottom:0;
+Width:100%;
     background: #68dff0;
     color: #fff;
     padding: 10px 0;
