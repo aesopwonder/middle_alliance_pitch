@@ -1,0 +1,67 @@
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			
+	$("#userName").load("/cgi-bin/getUserRealName.py");
+	$("#walletBalance").load("/cgi-bin/getWalletBalance.py");
+	$("#repScore").load("/cgi-bin/getRepScore.py");
+	$("#recentTransactions").load("/cgi-bin/getRecentTransactions.py")
+	$("#recentStreamPosts").load("/cgi-bin/getStreamItem.py")
+	$("#updateName").click(function(){
+		var newName = prompt("Update your name:", "Enter new name here");
+        $.ajax({
+			url: "/cgi-bin/updateName.py",
+			type: "post",
+			datatype:"json",
+			data: {'TestUser3' : newName}
+			});
+		});
+	$("#sendCoins").click(function(){
+		var recipientName = prompt("Enter recipient username:");
+		var coinName = prompt("Enter coin name:");
+		var coinAmount = prompt("Enter number of coins to send:");
+		var privKey = prompt("Sending " + coinAmount + " " + coinName + " to " + recipientName + "...", "Enter Private Key To Confirm");
+        $.ajax({
+			url: "/cgi-bin/sendCoinToUser.py",
+			type: "post",
+			datatype:"json",
+			data: {'userName' : "TestUser3", 'recipientName' : recipientName, 'coinName' : coinName, 'coinAmount' : coinAmount, 'privKey' : privKey}
+			});
+		});
+	$("#postStreamItem").click(function(){
+		var title = prompt("Enter title of post:");
+		var content = prompt("Enter content of post:");
+		$.ajax({
+			url: "/cgi-bin/postStreamItem.py",
+			type: "post",
+			datatype:"json",
+			data: {'title' : title, 'content' : content}
+			});
+		});
+	$("#repPost").click(function(){
+		var postAddress = prompt("Enter post address:");
+		$.ajax({
+			url: "/cgi-bin/repPost.py",
+			type: "post",
+			datatype:"json",
+			data: {'postAddress' : postAddress}
+			});
+		});
+	});
+	
+	</script>
+	</head>
+	<body>
+    <p><b>User Name:&nbsp</b>TestUser3</p>
+	<p><b>Name:&nbsp</b><span id="userName"></span>&nbsp&nbsp<button type="button" class="btn" id="updateName">Update</button></p>
+	<p><b>Wallet balance:&nbsp</b><span id="walletBalance"></span><button type="button" class="btn" id="sendCoins">Send Coins</button></p>
+	<p><b>Rep:&nbsp</b><span id="repScore"></span></p>
+	<p><b>Recent Transactions:</b><p>
+	<p><pre><span id = "recentTransactions"></span></pre></p>
+	<p>Private key: VAQYrMNKarWcNG3CiiwQqxvsBy4AD5qUg7bpzVKQTCoZBr6PhUhGG4aB **FOR TRANSACTIONAL PURPOSES ONLY**</p>
+	<p><b>Recent Posts in "Marketing":</b><p>
+	<p><pre><span id = "recentStreamPosts"></span></pre></p>
+	<p><button type="button" class="btn" id="repPost">+Rep Post</button><button type="button" class="btn" id="postStreamItem">Post to "Marketing" Stream</button></p>
+	</body>
