@@ -73,5 +73,8 @@ def getUserAccountBalance(userName, multichainSavoirObject):
 	userAddress = getUserAddress(userName, multichainSavoirObject)
 	userAccountBalance = getUserAddressBalance(userAddress, multichainSavoirObject)
 	return userAccountBalance
-	
+
+
+
+
 

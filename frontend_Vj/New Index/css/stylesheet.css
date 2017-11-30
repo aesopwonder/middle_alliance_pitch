@@ -64,6 +64,7 @@ body{
 .popup{
   position: relative;
   left:2vw;
+  top:2vw;
 }
 /**********
 Form Style
@@ -226,7 +227,7 @@ End Form Style
 }
 .subtitles{
   color:lightgreen;
-  font-size:500%;
+  font-size:7vw;
   position: absolute;
   top: 6vh;
   left: 0;
